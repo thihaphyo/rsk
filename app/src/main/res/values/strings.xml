@@ -1,0 +1,4 @@
+<resources>
+    <string name="error_session_expired">Session Expired</string>
+    <string name="action_ok">OK</string>
+</resources>

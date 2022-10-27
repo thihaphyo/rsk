@@ -1,0 +1,275 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs'
+}
+
+apply from: "$project.rootDir/tools/script-lint.gradle"
+apply from: "$project.rootDir/tools/artifacts.gradle"
+apply from: "$project.rootDir/tools/versioning.gradle"
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.rit.rsk"
+        minSdk 21
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '11'
+        useIR = true
+    }
+    buildFeatures {
+        compose true
+        viewBinding = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+        kotlinCompilerVersion  kotlin_version
+    }
+
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+
+    android {
+        lintOptions {
+            abortOnError false
+        }
+    }
+
+    //Flavor and Build Types
+
+    signingConfigs {
+        debug {
+            storeFile file('../keystore/debug.keystore')
+            storePassword 'rskandroid'
+            keyAlias 'rskandroid'
+            keyPassword 'rskandroid'
+        }
+        release {
+            storeFile file("../keystore/release.keystore")
+            storePassword 'rwsguestreleasestore'
+            keyAlias 'rwsguestreleasealias'
+            keyPassword 'rwsguestreleasestore'
+        }
+    }
+
+    buildTypes {
+
+        debug {
+            ext.enableCrashlytics = false
+            ext.alwaysUpdateBuildId = false
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android.txt')
+        }
+
+        release {
+            minifyEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            ndk {
+                debugSymbolLevel 'SYMBOL_TABLE'
+            }
+        }
+    }
+
+    flavorDimensions "stage"
+
+    productFlavors {
+        // Build this if client/pm wants apk with staging endpoints
+        // All three flavors use the same google-services.json
+        dev {
+            dimension "stage"
+            versionNameSuffix "-dev"
+            applicationIdSuffix '.dev'
+
+            resConfigs "en", "xxhdpi" //This optimizes dev build speed
+            resValue "string", "facebook_app_id", "4885816171513811"
+            resValue "string", "fb_login_protocol_scheme", "fb4885816171513811"
+            resValue "string", "rsk_app_name", "RSK-Dev"
+            resValue "string", "app_name", "RSK-Dev"
+            resValue "string", "GOOGLE_API_KEY", "AIzaSyD5mJX0dXMdJxw_yxfJeVjoCZHtIy0aHNg"
+            buildConfigField "String", "CRYTP_KEY", "\"Rio Stocks\""
+            buildConfigField "String", "GOOGLE_WEB_CLIENT_ID", "\"28141916794-242tvqtpsk1tb4ctvt5p1rpu8tuilp00.apps.googleusercontent.com\""
+            buildConfigField "String", "PIN_PUBLIC_KEY", "\"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArUcSodCl3CrKjdToObpi1BbX5F88ir3oTlOZV/WiPXiz97sTOvSLPfoSh0PZNClgLA3QHqcMUIKPO28czf13J0dmzMtpvevpMLalHyD8l6KD+biWQgxWkTHVYHAnCL3THsal6hstbSXI1ShrNKkDq9zahbLSxrN4u4qONaeU9Mo6SC09G3kCRi4vvf1GEv8b9InWw3/PL4mFwnU7O2nXjqcw1RmL9ETe3G1ZKv7fF2AnHMG1dl5Xmpb/QcJP7mialF8vzbd0nMkIe+t3p1wLU5zJZ5XVWWBF5yX+C41bzNV34rM+zkFyWSZdDy21CSAugEBOKYxUwt6MuEqNnx23iwIDAQAB\""
+            versionCode gitHeadCommitCount
+            versionName gitVersionName
+        }
+
+        // Build this if client/pm wants apk with uat endpoints
+        uat {
+            dimension "stage"
+            versionNameSuffix "-uat"
+            applicationIdSuffix '.uat'
+            resValue "string", "facebook_app_id", "691217228725784"
+            resValue "string", "fb_login_protocol_scheme", "fb691217228725784"
+            resValue "string", "rsk_app_name", "RSK-UAT"
+            resValue "string", "app_name", "RSK-UAT"
+            resValue "string", "GOOGLE_API_KEY", "AIzaSyDd7eU61kjrQC3FDGfcdt_u1I5Qj3UwJBc"
+            buildConfigField "String", "CRYTP_KEY", "\"Rio Stocks\""
+            buildConfigField "String", "GOOGLE_WEB_CLIENT_ID", "\"244544522355-kpep7op2q8rntpotq96aiv6brspcpu3a.apps.googleusercontent.com\""
+            buildConfigField "String", "PIN_PUBLIC_KEY", "\"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArXFk4HKKZN6zK4/qkbAxVvAdkm4VnjsQlhjRzlXI7IvOQ101GohyS8EMAOIGNcJCrantx2D1vXjX2rlcIDhBrRPg5TsXTe7KnEBSBJontVO8btl+04S7lQ9RSgnR0ULxAW2K9lpHNBlH2o66043pgIG+zhTwMkWKcTCOzFLuMfVZjmGI64R6KPgVAN+i+F0lBIKs/WRAHUHQ1k4krjqurpD6hAOWIlzQSqonE20OD4mUCxSjiodCux7pThMYo/fHcpbeQS8cN+kd+ydNLVgA7ADT4+L4u4nVjWXUlmjfjEHkYg3LG4DzkyjSL5o/blMjSoDYPegC5TfTikb2CgTk1QIDAQAB\""
+            versionCode gitHeadCommitCount
+            versionName gitVersionName
+        }
+
+        // Build this if client/pm wants apk with production endpoints or
+        // once client/pm finally approved to upload to playstore
+        prod {
+            dimension "stage"
+            resValue "string", "facebook_app_id", "2017215121786023"
+            resValue "string", "fb_login_protocol_scheme", "fb2017215121786023"
+            resValue "string", "rws_guest_app_name", "RSK"
+            resValue "string", "app_name", "RSK"
+            resValue "string", "GOOGLE_API_KEY", "AIzaSyBaJQEn6uldTVd2ApaVTdJo5otyIdCgQ4E"
+            buildConfigField "String", "CRYTP_KEY", "\"Rio Stocks\""
+            buildConfigField "String", "GOOGLE_WEB_CLIENT_ID", "\"1039021685051-sf2fofr3bsovft3f5pni37ap25vsbikn.apps.googleusercontent.com\""
+            buildConfigField "String", "PIN_PUBLIC_KEY", "\"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvmHQ5ABIflaLzSmazeIuUe57sSUxa5de/RPK3V4xFjpf9rCbh2SW+kLQJKk7B6EiMJqBz9lS+i+OycNrDFRacWxbQ95Th7e00aoqq2k3lvVnNcG+fEclcES9RL8VaqwbKS/9iE1MA4uguPOIchk1gEqPJbV1ITqmX5Ox0WdSiY9+1NXYyMqbT2nyJPYLEbpjbRFF35E+qIL1JadnGRoFezHQsPjehmlyutuL4pp1kTn33pR40EQZzST+L/PqF9Amd1EnB1cKlc4DMZpr22gAiPAyIwKSV20WQlUD3ybQ9cXHKkv+OGeapMDbZ1ffW4yRatCXmNEbJzFNLEWcaaA2QwIDAQAB\""
+            versionCode 7
+            versionName "2.0.2"
+        }
+    }
+}
+
+dependencies {
+
+    implementation project(':shared')
+    implementation project(':domain')
+    implementation project(':data')
+
+    implementation "androidx.core:core-ktx:$versions.core_ktx"
+    implementation "androidx.appcompat:appcompat:$versions.appcompat"
+    implementation "com.google.android.material:material:$versions.material"
+    implementation "androidx.constraintlayout:constraintlayout:$versions.constraintLayout"
+
+    // Jetpack compose
+    // Core
+    implementation "androidx.compose.foundation:foundation:$compose_version"
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.material:material:$compose_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0"
+    implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
+    implementation "androidx.activity:activity-compose:1.4.0"
+    // Tooling
+    implementation "androidx.compose.ui:ui-tooling:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
+
+    // paging
+    implementation "androidx.paging:paging-runtime-ktx:$versions.paging"
+
+    // coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutines"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$versions.glide"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.0.0'
+    implementation 'com.google.firebase:firebase-database-ktx:20.0.4'
+
+    implementation platform('com.google.firebase:firebase-bom:29.3.1')
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    kapt "com.github.bumptech.glide:compiler:$versions.glide"
+
+    // Lifecycle
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$versions.lifecycle"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
+
+    // navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$versions.navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$versions.navigation"
+
+    // dagger
+    implementation "com.google.dagger:hilt-android:$versions.dagger"
+    kapt "com.google.dagger:hilt-android-compiler:$versions.dagger"
+
+    // permissions
+    implementation "pub.devrel:easypermissions:$versions.easypermissions"
+
+    // facebook login
+    implementation 'com.facebook.android:facebook-android-sdk:12.3.0'
+
+    // Epoxy
+    implementation "com.airbnb.android:epoxy:$versions.epoxy"
+    implementation "com.airbnb.android:epoxy-databinding:$versions.epoxy"
+    kapt "com.airbnb.android:epoxy-processor:$versions.epoxy"
+
+    //phone number format
+    implementation 'ru.tinkoff.decoro:decoro:1.3.0'
+
+    // OTP View
+    implementation "com.github.mukeshsolanki:android-otpview-pinview:$versions.otpview"
+
+    // To fix Duplicated dependency class
+    implementation 'com.google.guava:guava:27.0.1-android'
+
+    // Timber
+    implementation "com.jakewharton.timber:timber:$versions.timber"
+
+    //viewpager2
+    implementation "com.tbuonomo.andrui:viewpagerdotsindicator:$versions.view_pager"
+
+    // date time
+    implementation "com.jakewharton.threetenabp:threetenabp:$versions.threetenabp"
+
+    // animation
+    implementation "com.airbnb.android:lottie:${versions.lottieVersion}"
+
+    //QRcode
+    implementation "com.github.kenglxn.QRGen:android:$versions.qr_gen"
+
+    // Barcode
+    implementation('com.journeyapps:zxing-android-embedded:4.3.0') { transitive = false }
+    implementation 'com.google.zxing:core:3.3.0'
+
+    // play service auth
+    implementation "com.google.android.gms:play-services-auth:$versions.play_service_auth"
+
+    implementation "cat.ereza:customactivityoncrash:2.3.0"
+
+    implementation "com.tencent:mmkv-static:${versions.mmkv}"
+
+    // pdf viewer
+    implementation "com.github.barteksc:android-pdf-viewer:${versions.pdf_viewer}"
+
+    //zoomable layout
+    implementation("com.otaliastudios:zoomlayout:1.9.0")
+
+    // Test Dependencies
+    testImplementation "junit:junit:$versions.junit"
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+}

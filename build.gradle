@@ -1,0 +1,87 @@
+import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
+
+buildscript {
+    ext {
+        compose_version = "1.2.0-beta02"
+        kotlin_version = "1.6.21"
+        versions = [
+                'appcompat'         : '1.4.1',
+                'core_ktx'          : '1.7.0',
+                'paging'            : '3.0.0',
+                'material'          : '1.5.0',
+                'constraintLayout'  : '2.0.4',
+                'lifecycle'         : '2.4.1',
+                'fragment_ktx'      : '1.5.0-beta01',
+                'activity_ktx'      : '1.4.0',
+                'navigation'        : '2.5.0-alpha03',
+                'dagger'            : '2.41',
+                'gson'              : '2.9.0',
+                'loggingInterceptor': '4.2.2',
+                'retrofit'          : '2.9.0',
+                'timber'            : '5.0.1',
+                'glide'             : '4.11.0',
+                'threetenabp'       : "1.3.1",
+                'biometric'         : '1.0.1',
+                'coroutines'        : '1.5.2',
+                'junit'             : '4.13.2',
+                'junitExt'          : '1.1.3',
+                'mockito'           : '3.2.4',
+                'mockitoKotlin'     : '2.2.0',
+                'rootbeer'          : '0.0.8',
+                'espresso'          : '3.4.0',
+                'truth'             : '1.1.3',
+                'androidanimations' : '2.4@aar',
+                'libphonenumber'    : '8.12.20',
+                'easypermissions'   : '3.0.0',
+                'epoxy'             : '4.6.4',
+                'otpview'           : '2.1.0',
+                'view_pager'        : '4.1.2',
+                'lottieVersion'     : '4.1.0',
+                'qr_gen'            : '2.4.0',
+                'gmsLocation'       : '17.1.0',
+                'gmsMap'            : '18.0.2',
+                'chucker'           : '3.5.2',
+                'mmkv'              : '1.2.12',
+                'play_service_auth' : '20.0.1',
+                'pdf_viewer'        : '2.8.2'
+        ]
+    }
+
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.1.3'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:2.40"
+        classpath 'com.google.gms:google-services:4.3.10'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.0'
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$versions.navigation")
+    }
+}
+
+plugins {
+    id "org.jlleitschuh.gradle.ktlint" version "10.1.0"
+    id 'org.jetbrains.kotlin.android' version '1.6.21' apply false
+}
+
+subprojects {
+    apply from: "$project.rootDir/tools/script-ktlint.gradle"
+}
+
+ext.ReporterType = ReporterType
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+        gradlePluginPortal()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

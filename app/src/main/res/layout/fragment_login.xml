@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+<ImageView
+    android:id="@+id/imageView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="26dp"
+    android:src="@drawable/ic_login_graphics"
+    android:layout_above="@+id/tvLoginText"
+    android:layout_alignLeft="@+id/tvLoginText"
+    android:layout_alignRight="@+id/tvLoginText" />
+
+    <TextView
+        android:id="@+id/tvLoginText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="31dp"
+        android:layout_marginEnd="31dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:text="Login with your Phone Number" />
+
+    <EditText
+        android:id="@+id/etPhone"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_below="@+id/tvLoginText"
+        android:layout_alignLeft="@+id/tvLoginText"
+        android:layout_alignRight="@+id/tvLoginText"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/et_bg"
+        android:ems="10"
+        android:hint="Phone Number"
+        android:importantForAutofill="no"
+        android:inputType="phone"
+        android:paddingLeft="16dp"
+        android:textSize="15sp"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="#A8A8A8"/>
+
+<EditText
+    android:id="@+id/etPassword"
+    android:layout_width="match_parent"
+    android:layout_height="52dp"
+    android:layout_below="@+id/etPhone"
+    android:layout_alignLeft="@+id/tvLoginText"
+    android:layout_alignRight="@+id/tvLoginText"
+    android:layout_marginTop="23dp"
+    android:background="@drawable/et_bg"
+    android:ems="10"
+    android:hint="Password"
+    android:importantForAutofill="no"
+    android:inputType="textPassword"
+    android:paddingLeft="16dp"
+    android:textSize="15sp"
+    android:fontFamily="@font/poppins_regular"
+    android:textColor="#A8A8A8"/>
+
+<androidx.appcompat.widget.AppCompatButton
+    android:id="@+id/btnLogin"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_alignLeft="@+id/tvLoginText"
+    android:layout_alignRight="@+id/tvLoginText"
+    android:layout_alignParentBottom="true"
+    android:layout_marginBottom="43dp"
+    android:background="@drawable/btn_bg"
+    android:textColor="@color/white"
+    android:textAllCaps="false"
+    android:fontFamily="@font/poppins_semibold"
+    android:textSize="18sp"
+    android:text="Login">
+</androidx.appcompat.widget.AppCompatButton>
+
+
+
+</RelativeLayout>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/navView"
+        android:layout_width="match_parent"
+        android:layout_height="63dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnBack"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            app:srcCompat="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OTP Verification"
+            android:layout_toRightOf="@+id/btnBack"
+            android:layout_alignTop="@+id/btnBack"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="14sp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivOtp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            app:srcCompat="@drawable/ic_otp" />
+
+        <TextView
+            android:id="@+id/tvPhoneLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ivOtp"
+            android:layout_alignLeft="@+id/ivOtp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/poppins_regular"
+            android:lineSpacingMultiplier="1.2"
+            android:text="Enter the OTP sent to your phone"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvPhoneLabel"
+            android:text="09-459642698"
+            android:layout_alignLeft="@+id/tvPhoneLabel"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="16sp"
+            android:textColor="@color/black"/>
+
+        <com.mukesh.OtpView
+            android:id="@+id/otpView"
+            style="@style/OtpWidget.OtpView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvPhone"
+            android:layout_alignLeft="@+id/tvPhone"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:cursorVisible="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:inputType="number"
+            android:lineHeight="1dp"
+            android:textAppearance="@style/TextAppearance.RSK.Headline4"
+            android:textColor="@color/black"
+            app:cursorColor="@color/black"
+            app:itemCount="6"
+            app:itemHeight="50dp"
+            app:itemRadius="8dp"
+            app:itemSpacing="8dp"
+            app:itemWidth="50dp"
+            app:lineColor="#886EF7"
+            app:lineWidth="1dp"
+            app:state_filled="true"
+            app:viewType="rectangle"
+            tools:text="123456" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_below="@+id/otpView"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/tvCountDownLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Request new code in "
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvCountDown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/tvCountDownLabel"
+                android:layout_marginStart="5dp"
+                android:text="00:10"
+                android:fontFamily="@font/poppins_bold"
+                android:textSize="14sp"
+                android:textColor="@color/black"/>
+
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

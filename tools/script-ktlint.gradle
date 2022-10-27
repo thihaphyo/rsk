@@ -1,0 +1,16 @@
+apply plugin: "org.jlleitschuh.gradle.ktlint"
+
+ktlint {
+    version = "0.41.0"
+    debug = true
+    android = true
+    outputToConsole = true
+    reporters {
+        reporter "checkstyle"
+    }
+
+    filter {
+        exclude("**/generated/**")
+        include("**/kotlin/**")
+    }
+}

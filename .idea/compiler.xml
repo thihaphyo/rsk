@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel target="1.7">
+      <module name="RioStocks.app" target="11" />
+      <module name="RioStocks.data" target="11" />
+      <module name="RioStocks.shared" target="11" />
+      <module name="rsk.app" target="11" />
+      <module name="rsk.data" target="11" />
+      <module name="rsk.shared" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
