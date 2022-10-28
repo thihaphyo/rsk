@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.airbnb.epoxy.Carousel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.rit.data.helper.GlobalEvents
@@ -44,11 +45,13 @@ class MainActivity : MVVMActivity<MainViewModel, MainEvent>() {
                     R.navigation.nav_login
                 }
                 ScreenState.Home -> {
-                    R.navigation.nav_splash_screen
+                    R.navigation.nav_home
                 }
             }
             val graph = findNavController().navInflater.inflate(navGraphId)
             findNavController().graph = graph
+
+            binding.navView.setupWithNavController(findNavController())
         }
 
         GlobalEvents.eventFlow

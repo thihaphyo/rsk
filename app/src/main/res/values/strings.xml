@@ -1,4 +1,7 @@
 <resources>
     <string name="error_session_expired">Session Expired</string>
     <string name="action_ok">OK</string>
+    <string name="lbl_resend">Resend</string>
+    <string name="lbl_resend_in">Request new code in </string>
+    <string name="lbl_timer_format">%1$ss</string>
 </resources>

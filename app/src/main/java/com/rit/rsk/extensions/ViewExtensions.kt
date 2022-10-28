@@ -40,12 +40,16 @@ fun OtpView.setCustomLineColor() {
             intArrayOf(-android.R.attr.state_selected)
         )
     val colors = intArrayOf(
-        Color.parseColor("#C84332"), // unfilled color
-        Color.parseColor("#444444") // filled color
+        Color.parseColor("#886EF7"), // unfilled color
+        Color.parseColor("#E8E8E8") // filled color
     )
     val colorsList = ColorStateList(states, colors)
+    val textColorList = ColorStateList(states, intArrayOf(
+        Color.parseColor("#000000"),
+        Color.parseColor("#000000")
+    ))
     this.setLineColor(colorsList)
-    this.setTextColor(colorsList)
+    this.setTextColor(textColorList)
 }
 
 //fun ImageView.loadFromUrl(url: String?) =

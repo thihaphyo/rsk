@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rlMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+           android:id="@+id/ivMenu"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_menu" />
+
+        <ImageView
+            android:id="@+id/iSettings"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/ic_setting" />
+
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rlMenu">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:columnCount="2"
+                android:alignmentMode="alignBounds"
+                android:rowOrderPreserved="false"
+                android:useDefaultMargins="true"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_columnWeight="1"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="16dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="2dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/btn_bg">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivSell"
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            app:srcCompat="@drawable/ic_sell"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="24dp"/>
+
+                        <TextView
+                            android:id="@+id/tvCounter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ivSell"
+                            android:layout_alignStart="@+id/ivSell"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="POS Counter"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/tvSell"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tap to Sell"
+                            android:layout_below="@+id/tvCounter"
+                            android:layout_alignStart="@+id/tvCounter"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="10sp"
+                            android:textColor="#F1F0F0"/>
+
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_columnWeight="1"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="@color/black">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/pink_gradient_bg">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivTdySales"
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="24dp"
+                            app:srcCompat="@drawable/ic_sales" />
+
+                        <TextView
+                            android:id="@+id/tvTdySalesAmt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ivTdySales"
+                            android:layout_alignStart="@+id/ivTdySales"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="MMK 200 Lakhs"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/tvSales"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Today Sales"
+                            android:layout_below="@+id/tvTdySalesAmt"
+                            android:layout_alignStart="@+id/tvTdySalesAmt"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="10sp"
+                            android:textColor="#F1F0F0"/>
+
+                        <TextView
+                            android:id="@+id/tvView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tap to view"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignStart="@+id/tvTdySalesAmt"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="8sp"
+                            android:layout_marginBottom="10dp"
+                            android:textColor="#F1F0F0"/>
+
+
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_columnWeight="1"
+                    android:layout_marginEnd="10dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="@color/black">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/light_blue_gradient_bg">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivStocks"
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="24dp"
+                            app:srcCompat="@drawable/ic_stocks" />
+
+                        <TextView
+                            android:id="@+id/tvStockAmt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ivStocks"
+                            android:layout_alignStart="@+id/ivStocks"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="120 K"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/tvStocksAvailable"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tvStockAmt"
+                            android:layout_alignStart="@+id/tvStockAmt"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Stocks Available"
+                            android:textColor="#F1F0F0"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/tvViewStock"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tap to view"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignStart="@+id/tvStocksAvailable"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="8sp"
+                            android:layout_marginBottom="10dp"
+                            android:textColor="#F1F0F0"/>
+
+
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_columnWeight="1"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="@color/black">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/orange_gradient_bg">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/ivPurchase"
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="24dp"
+                            app:srcCompat="@drawable/ic_purchase" />
+
+                        <TextView
+                            android:id="@+id/tvPurchaseAmt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ivPurchase"
+                            android:layout_alignStart="@+id/ivPurchase"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="MMk 100 Lakhs"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/tvTdyPurchases"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tvPurchaseAmt"
+                            android:layout_alignStart="@+id/tvPurchaseAmt"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Today Purchases"
+                            android:textColor="#F1F0F0"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/tvViewPurchases"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tap to view"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignStart="@+id/tvTdyPurchases"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="8sp"
+                            android:layout_marginBottom="10dp"
+                            android:textColor="#F1F0F0"/>
+
+
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </GridLayout>
+
+            <RelativeLayout
+                android:id="@+id/topProducts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/tvTopSelling"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Top Selling Products"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/btnMore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/tvTopSelling"
+                    android:layout_alignParentRight="true"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="More"
+                    android:textColor="@color/black"
+                    android:textSize="10sp" />
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:columnCount="2"
+                    android:layout_below="@+id/tvTopSelling"
+                    android:alignmentMode="alignBounds"
+                    android:rowOrderPreserved="false"
+                    android:useDefaultMargins="true">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="180dp"
+                        android:layout_columnWeight="1"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="16dp"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="2dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/btn_bg">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivTopOneItem"
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:scaleType="centerCrop"
+                                app:srcCompat="@drawable/sample_one" />
+
+                            <TextView
+                                android:id="@+id/tvProductName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/ivTopOneItem"
+                                android:text="Beef Steak"
+                                android:fontFamily="@font/poppins_bold"
+                                android:textSize="13sp"
+                                android:textColor="@color/white"
+                                android:layout_marginStart="14dp"
+                                android:lines="1"
+                                android:layout_marginTop="5dp"/>
+
+                            <TextView
+                                android:id="@+id/tvSoldAmt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="MMK 2.5 Lakhs (Sold)"
+                                android:layout_marginTop="2dp"
+                                android:layout_below="@+id/tvProductName"
+                                android:layout_alignStart="@+id/tvProductName"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textSize="12sp"
+                                android:lines="1"
+                                android:textColor="#F1F0F0"/>
+
+                            <TextView
+                                android:id="@+id/tvSoldQty"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Total 2K stocks sold"
+                                android:layout_marginTop="6dp"
+                                android:layout_below="@+id/tvSoldAmt"
+                                android:layout_alignStart="@+id/tvProductName"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textSize="10sp"
+                                android:lines="1"
+                                android:textColor="#F1F0F0"/>
+
+
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="180dp"
+                        android:layout_columnWeight="1"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="@color/black">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/pink_gradient_bg">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivTopTwoItem"
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:scaleType="centerCrop"
+                                app:srcCompat="@drawable/sample_two" />
+
+                            <TextView
+                                android:id="@+id/tvProductName2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/ivTopTwoItem"
+                                android:text="Beef Steak"
+                                android:fontFamily="@font/poppins_bold"
+                                android:textSize="13sp"
+                                android:textColor="@color/white"
+                                android:layout_marginStart="14dp"
+                                android:lines="1"
+                                android:layout_marginTop="5dp"/>
+
+                            <TextView
+                                android:id="@+id/tvSoldAmt2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="MMK 2.5 Lakhs (Sold)"
+                                android:layout_marginTop="2dp"
+                                android:layout_below="@+id/tvProductName2"
+                                android:layout_alignStart="@+id/tvProductName2"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textSize="12sp"
+                                android:lines="1"
+                                android:textColor="#F1F0F0"/>
+
+                            <TextView
+                                android:id="@+id/tvSoldQty2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Total 2K stocks sold"
+                                android:layout_marginTop="6dp"
+                                android:layout_below="@+id/tvSoldAmt2"
+                                android:layout_alignStart="@+id/tvProductName2"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textSize="10sp"
+                                android:lines="1"
+                                android:textColor="#F1F0F0"/>
+
+
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="180dp"
+                        android:layout_columnWeight="1"
+                        android:layout_marginEnd="10dp"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="@color/black">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/light_blue_gradient_bg">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivTopThreeItem"
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:scaleType="centerCrop"
+                                app:srcCompat="@drawable/sample_two" />
+
+                            <TextView
+                                android:id="@+id/tvProductName3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/ivTopThreeItem"
+                                android:text="Beef Steak"
+                                android:fontFamily="@font/poppins_bold"
+                                android:textSize="13sp"
+                                android:textColor="@color/white"
+                                android:layout_marginStart="14dp"
+                                android:lines="1"
+                                android:layout_marginTop="5dp"/>
+
+                            <TextView
+                                android:id="@+id/tvSoldAmt3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="MMK 2.5 Lakhs (Sold)"
+                                android:layout_marginTop="2dp"
+                                android:layout_below="@+id/tvProductName3"
+                                android:layout_alignStart="@+id/tvProductName3"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textSize="12sp"
+                                android:lines="1"
+                                android:textColor="#F1F0F0"/>
+
+                            <TextView
+                                android:id="@+id/tvSoldQty3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Total 2K stocks sold"
+                                android:layout_marginTop="6dp"
+                                android:layout_below="@+id/tvSoldAmt3"
+                                android:layout_alignStart="@+id/tvProductName3"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textSize="10sp"
+                                android:lines="1"
+                                android:textColor="#F1F0F0"/>
+
+
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="0dp"
+                        android:layout_height="180dp"
+                        android:layout_columnWeight="1"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="@color/black">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/orange_gradient_bg">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivTopFourItem"
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:scaleType="centerCrop"
+                                app:srcCompat="@drawable/sample_one" />
+
+                            <TextView
+                                android:id="@+id/tvProductName4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/ivTopFourItem"
+                                android:text="Beef Steak"
+                                android:fontFamily="@font/poppins_bold"
+                                android:textSize="13sp"
+                                android:textColor="@color/white"
+                                android:layout_marginStart="14dp"
+                                android:lines="1"
+                                android:layout_marginTop="5dp"/>
+
+                            <TextView
+                                android:id="@+id/tvSoldAmt4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="MMK 2.5 Lakhs (Sold)"
+                                android:layout_marginTop="2dp"
+                                android:layout_below="@+id/tvProductName4"
+                                android:layout_alignStart="@+id/tvProductName4"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textSize="12sp"
+                                android:lines="1"
+                                android:textColor="#F1F0F0"/>
+
+                            <TextView
+                                android:id="@+id/tvSoldQty4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Total 2K stocks sold"
+                                android:layout_marginTop="6dp"
+                                android:layout_below="@+id/tvSoldAmt4"
+                                android:layout_alignStart="@+id/tvProductName4"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textSize="10sp"
+                                android:lines="1"
+                                android:textColor="#F1F0F0"/>
+
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </GridLayout>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/tvLowStock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Low Stock Products"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/btnMoreLowStock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/tvLowStock"
+                    android:layout_alignParentRight="true"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="More"
+                    android:textColor="@color/black"
+                    android:textSize="10sp" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_low_stock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_below="@+id/tvLowStock"
+                    tools:listitem="@layout/item_low_stock"
+                    android:layout_marginTop="10dp"/>
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+</RelativeLayout>

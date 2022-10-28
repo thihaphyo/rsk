@@ -1,6 +1,8 @@
 package com.rit.rsk
 
 import android.os.CountDownTimer
+import android.os.Handler
+import android.os.Looper
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.distinctUntilChanged
@@ -13,6 +15,7 @@ import com.rit.rsk.model.CountDown
 import com.rit.shared.base.BaseViewModel
 import kotlinx.coroutines.launch
 import org.threeten.bp.Duration
+import kotlin.concurrent.schedule
 
 @HiltViewModel
 class MainViewModel @Inject constructor(): BaseViewModel<MainEvent>() {
@@ -42,7 +45,6 @@ class MainViewModel @Inject constructor(): BaseViewModel<MainEvent>() {
 
             override fun onFinish() {
                 _countDown.value = CountDown.Idle
-                _screenStateLiveData.value = ScreenState.Login
             }
         }.start()
     }
@@ -58,7 +60,18 @@ class MainViewModel @Inject constructor(): BaseViewModel<MainEvent>() {
 
     fun navigateSplashScreen() {
         _screenStateLiveData.value = ScreenState.Splash
-        createAndStartTimer()
+        val mainLooper = Looper.getMainLooper()
+        Timer("SettingUp", false).schedule(1000) {
+            Handler(mainLooper).post{
+                _screenStateLiveData.value = ScreenState.Login
+            }
+        }
         //getCoverImages()
+    }
+
+    fun navigateHome() {
+//        getProfile()
+//        updateFcmToken()
+        _screenStateLiveData.value = ScreenState.Home
     }
 }
