@@ -73,9 +73,9 @@ android {
         }
         release {
             storeFile file("../keystore/release.keystore")
-            storePassword 'rwsguestreleasestore'
-            keyAlias 'rwsguestreleasealias'
-            keyPassword 'rwsguestreleasestore'
+            storePassword 'rskreleaseandroid'
+            keyAlias 'rskreleaseandroid'
+            keyPassword 'rskreleaseandroid'
         }
     }
 

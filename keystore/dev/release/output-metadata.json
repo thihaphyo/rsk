@@ -11,9 +11,9 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 1,
-      "versionName": "0.0.1-dev",
-      "outputFile": "RWS Moments-dev-release.apk"
+      "versionCode": 4,
+      "versionName": "1.0-dev",
+      "outputFile": "RioStocks-dev-release.apk"
     }
   ],
   "elementType": "File"
