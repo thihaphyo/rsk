@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlContainer"
+    android:layout_width="wrap_content"
+    android:layout_height="33dp"
+    android:background="@drawable/border_radius_6_white"
+    android:layout_marginEnd="10dp">
+
+    <TextView
+        android:id="@+id/tvCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Beverages"
+        android:fontFamily="@font/poppins_semibold"
+        android:textSize="12sp"
+        android:layout_centerInParent="true"
+        android:paddingLeft="16dp"
+        android:paddingEnd="16dp" />
+
+
+</RelativeLayout>

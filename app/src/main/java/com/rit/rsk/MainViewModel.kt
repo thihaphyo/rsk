@@ -24,6 +24,10 @@ class MainViewModel @Inject constructor(): BaseViewModel<MainEvent>() {
     val screenStateLiveData: LiveData<ScreenState>
         get() = _screenStateLiveData.distinctUntilChanged()
 
+    private val _keyboardState = MutableLiveData<Boolean>()
+    val keyboardStateLiveData: LiveData<Boolean>
+        get() = _keyboardState
+
     private val _countDown = MutableLiveData<CountDown>(CountDown.Idle)
     val countDown: LiveData<CountDown>
         get() = _countDown
@@ -73,5 +77,9 @@ class MainViewModel @Inject constructor(): BaseViewModel<MainEvent>() {
 //        getProfile()
 //        updateFcmToken()
         _screenStateLiveData.value = ScreenState.Home
+    }
+
+    fun keyboardChange(isOpen: Boolean = false) {
+        _keyboardState.value = isOpen
     }
 }

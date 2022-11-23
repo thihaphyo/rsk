@@ -35,7 +35,7 @@ class MainActivity : MVVMActivity<MainViewModel, MainEvent>() {
         setContentView(binding.root)
         setUpEpoxyConfigs()
 
-        viewModel.screenStateLiveData.observe(this){ screenState ->
+        viewModel.screenStateLiveData.observe(this) { screenState ->
             if (screenState == null) return@observe
             val navGraphId = when (screenState) {
                 ScreenState.Splash -> {
@@ -62,7 +62,7 @@ class MainActivity : MVVMActivity<MainViewModel, MainEvent>() {
                     .setTitle("Error")
                     .setMessage(getString(R.string.error_session_expired))
                     .setPositiveButton(getString(R.string.action_ok)) { _, _ ->
-                      //  viewModel.logout()
+                        //  viewModel.logout()
                     }
                     .setCancelable(false)
                     .show()
@@ -73,6 +73,10 @@ class MainActivity : MVVMActivity<MainViewModel, MainEvent>() {
 //                binding.bottomNav.menu.getItem(0).isChecked = true
 //            }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
     }
 
     private fun setUpEpoxyConfigs() {

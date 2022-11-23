@@ -9,5 +9,40 @@
         android:id="@+id/homeFragment"
         android:name="com.rit.rsk.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_posCounterFragment"
+            app:destination="@id/posCounterFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/posCounterFragment"
+        android:name="com.rit.rsk.PosCounterFragment"
+        android:label="fragment_pos_counter"
+        tools:layout="@layout/fragment_pos_counter">
+
+        <action
+            android:id="@+id/action_posCounter_to_payment_summary"
+            app:destination="@id/paymentSummaryFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/paymentSummaryFragment"
+            app:popUpToInclusive="true"/>
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/paymentSummaryFragment"
+        android:name="com.rit.rsk.PaymentSummaryFragment"
+        android:label="fragment_payment_summary"
+        tools:layout="@layout/fragment_payment_summary">
+
+    </fragment>
 </navigation>

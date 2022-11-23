@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/category_normal">
 
     <RelativeLayout
         android:id="@+id/rlMenu"
@@ -52,6 +53,7 @@
                 android:paddingRight="20dp">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/rlPosCounter"
                     android:layout_width="0dp"
                     android:layout_height="150dp"
                     android:layout_columnWeight="1"
@@ -622,10 +624,10 @@
                     android:id="@+id/rv_low_stock"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:layout_below="@+id/tvLowStock"
-                    tools:listitem="@layout/item_low_stock"
-                    android:layout_marginTop="10dp"/>
+                    android:layout_marginTop="10dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_low_stock" />
 
             </RelativeLayout>
 

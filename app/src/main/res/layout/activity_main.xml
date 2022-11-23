@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        android:background="@color/white"
+        android:background="#FFFFFF"
         app:defaultNavHost="true" />
 
     <com.google.android.material.navigation.NavigationView

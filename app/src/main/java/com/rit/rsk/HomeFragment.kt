@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.rit.domain.models.LowStockData
 import com.rit.rsk.base.BaseFragment
 import com.rit.rsk.databinding.FragmentHomeBinding
@@ -52,6 +53,12 @@ class HomeFragment: BaseFragment<HomeViewModel, HomeEvent>() {
         )
         binding.ivMenu.setOnClickListener {
             (activity as MainActivity).binding.rootView.openDrawer(Gravity.LEFT)
+        }
+
+        binding.rlPosCounter.setOnClickListener {
+            findNavController().navigate(
+                HomeFragmentDirections.actionHomeFragmentToPosCounterFragment()
+            )
         }
     }
 

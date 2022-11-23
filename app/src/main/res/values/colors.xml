@@ -10,4 +10,8 @@
     <color name="transparent">#00000000</color>
     <color name="main_color">#886EF7</color>
     <color name="overlay_black">#99000000</color>
+
+    <color name="category_normal">#FFFFFF</color>
+    <color name="category_selected">#818389</color>
+    <color name="purple">#896FF8</color>
 </resources>

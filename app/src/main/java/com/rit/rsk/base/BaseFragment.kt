@@ -51,6 +51,11 @@ abstract class BaseFragment<VM : BaseViewModel<E>, E> : MVVMFragment<VM, E> {
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        //requireActivity().window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
+    }
+
     override fun onStop() {
         if (disabledScreenshot) {
             requireActivity().window.clearFlags(
